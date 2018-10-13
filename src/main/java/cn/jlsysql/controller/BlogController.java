@@ -60,6 +60,7 @@ public class BlogController {
     public ModelAndView index(ModelAndView modelAndView){
         modelAndView.setViewName("index");
         modelAndView.addObject("blogs",blogService.getAllBlogs());
+        modelAndView.addObject("hotblogs",blogService.getAllBlogs());
         return  modelAndView;
     }
     @RequestMapping("/test")
@@ -89,7 +90,7 @@ public class BlogController {
         return modelAndView;
     }
     @RequestMapping(value = {"/addblog"},method = {RequestMethod.POST})
-    public ModelAndView addBlogPost(ModelAndView modelAndView, AddBlog addBlog,HttpSession session){
+    public String addBlogPost(ModelAndView modelAndView, AddBlog addBlog,HttpSession session){
         modelAndView.setViewName("addblog");
         modelAndView.addObject("blog",addBlog);
         addBlog.setAuthor(Integer.parseInt(((User)session.getAttribute("user")).getId()));
@@ -99,7 +100,7 @@ public class BlogController {
         ((User) session.getAttribute("user")).setBook_amount(count+"");
         userService.changeBlogCount(((User) session.getAttribute("user")).getId(),count);
         blogService.addBlog(addBlog);
-        return modelAndView;
+        return "redirect:/";
     }
     @RequestMapping("/classify/{id}")
     public  ModelAndView classify(@PathVariable String id,ModelAndView modelAndView){
@@ -108,6 +109,7 @@ public class BlogController {
         }else {
             modelAndView.addObject("blogs",blogService.getBlogByKind(Integer.parseInt(id)));
         }
+        modelAndView.addObject("hotblogs",blogService.getAllBlogs());
         modelAndView.setViewName("index");
         return modelAndView;
     }
@@ -131,7 +133,6 @@ public class BlogController {
     public void getBlogByPage(HttpServletRequest request,HttpServletResponse response) throws IOException {
         response.setCharacterEncoding("utf8");
         List<Blog> blogs=blogService.getAllBlogsByPage(request.getParameter("page"));
-        System.out.println(JSON.toJSONString(blogs));
         response.getWriter().write(JSON.toJSONString(blogs));
     }
 }

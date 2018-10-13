@@ -61,7 +61,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public List getBlogByPage(int page) {
-        return blogDao.getBlogByPage((page - 1) * 20);
+        return blogDao.getBlogByPage((page - 1) * 15);
     }
 
     @Override

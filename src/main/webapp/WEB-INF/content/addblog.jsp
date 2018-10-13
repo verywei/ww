@@ -29,7 +29,7 @@
 <div class="layui-layout layui-layout-admin">
     <!--header-->
     <%@include file="part/header.jsp" %>
-    <div class="layui-row">
+    <div class="layui-row" style="min-height: 89.6%">
         <div class="layui-col-xs1">&nbsp;</div>
         <div class="layui-col-xs8">
             <form:form cssClass="layui-form" action="addblog" modelAttribute="blog"

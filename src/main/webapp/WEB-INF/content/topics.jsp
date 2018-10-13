@@ -35,7 +35,7 @@
     <%@include file="part/header.jsp" %>
 
     <!--header end-->
-    <div class="layui-row" style="margin-top: 10px;min-height: 643px">
+    <div class="layui-row" style="margin-top: 10px;min-height: 88.6%">
         <div class="layui-col-lg2">&nbsp;</div>
         <div class="layui-col-lg8">
             <div class="write-backgroud">

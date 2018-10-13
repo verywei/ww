@@ -112,14 +112,15 @@
                         </div>
                         <ul style="margin-top: -15px">
                             <%
-                                for (int i = 0; i < 10; i++) {
+                                List<Blog> hotBlogs= (List<Blog>) request.getAttribute("hotblogs");
+                                for (int i = 0; i < 5; i++) {
                             %>
                             <li style="margin-top: 15px">
                                 <div class="layui-row">
                                     <div class="layui-col-lg4">
-                                        <a href="#"><img src="../../img/img1.jpg" style="width:90px;"></a>
+                                        <a href="#"><img src="../../img/img<%=i+2%>.jpg" style="height:45;width:90px;"></a>
                                     </div>
-                                    <div class="layui-col-lg8"><a href="#">如何用分片技术把7笔/秒的区块链交易提升到2488笔/秒</a></div>
+                                    <div class="layui-col-lg8"><a href=/details/<%=hotBlogs.get(i).getId()%>><%=hotBlogs.get(i).getTitle()%></a></div>
                                 </div>
                             </li>
                             <%
@@ -158,7 +159,7 @@
 
     });
     $(function () {
-        var page=0;
+        var page=1;
         $(".addrow").click(function () {
             $.ajax({
                 url:'/getblogbypage',

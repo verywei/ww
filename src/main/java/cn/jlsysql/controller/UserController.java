@@ -99,12 +99,12 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/logout"}, method = {RequestMethod.GET})
-    public ModelAndView logout(ModelAndView modelAndView, HttpSession session, HttpServletRequest request) {
-        System.out.println(request.getRequestURL());
+    public String logout(ModelAndView modelAndView, HttpSession session, HttpServletRequest request,HttpServletResponse response) throws IOException {
         session.invalidate();
-        modelAndView.addObject("blogs", blogService.getAllBlogs());
-        modelAndView.setViewName("index");
-        return modelAndView;
+//        modelAndView.addObject("blogs", blogService.getAllBlogs());
+//        modelAndView.setViewName("index");
+//        response.sendRedirect("index");
+        return "redirect:/";
     }
 
     @RequestMapping(value = {"usersetting"}, method = {RequestMethod.GET})
